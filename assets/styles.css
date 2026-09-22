@@ -77,7 +77,7 @@ a:hover { color: #0b524e; }
 }
 .identity a { color: var(--muted); }
 h1, h2, h3, h4 { font-family: var(--serif); font-weight: 560; letter-spacing: -0.02em; line-height: 1.15; }
-h1 { font-size: clamp(2.05rem, 4.4vw, 3.35rem); margin: 0.35rem 0 0.8rem; max-width: 18ch; }
+h1 { font-size: clamp(1.85rem, 3.5vw, 2.75rem); margin: 0.35rem 0 0.8rem; max-width: 22em; }
 h2 { font-size: 1.7rem; margin: 0 0 0.4rem; }
 h3 { font-size: 1.45rem; margin: 0.15rem 0 0.45rem; }
 .deck { font-size: 1.18rem; max-width: 46rem; margin: 0; }
@@ -235,6 +235,20 @@ h3 { font-size: 1.45rem; margin: 0.15rem 0 0.45rem; }
   border-left: 2px dashed var(--c);
   z-index: 1;
 }
+.hcap::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 0;
+  bottom: 0;
+  width: 9px;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 2px,
+    rgba(194, 65, 12, 0.75) 2px 3px
+  );
+  pointer-events: none;
+}
 .hcap.labeled::after {
   content: "185";
   position: absolute;
@@ -255,6 +269,11 @@ h3 { font-size: 1.45rem; margin: 0.15rem 0 0.45rem; }
   font-variant-numeric: tabular-nums;
 }
 .tick-ceiling { color: var(--c-ink); font-weight: 700; }
+.chart-pane + .chart-pane {
+  margin-top: 1.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
 .callout, .aside {
   margin: 0.85rem 0 0;
   padding: 0.75rem 0.85rem;

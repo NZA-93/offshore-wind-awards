@@ -168,7 +168,26 @@ for (const file of publicFiles) {
   }
 }
 
+const locked = {
+  headline: "Italy has no published offshore award price yet — €185/MWh is a policy ceiling, not a strike.",
+  subhead: "Public CfD and auction results across EU peers (≈2021–2026), original units, split by scheme type. Critic: ALERT none. Italy E-1 opacity = WEAK, not inflated awards.",
+  italy: "Italy FER 2 — ceiling only (not an award) — dashed/hatched 185, never in strike series",
+  fixed: "Fixed-bottom CfD clears (original units) — UK axis: £2012 real; no EU average",
+  floating: "Floating offshore — separate cohort",
+  poland: "Poland CfD — PLN band (own pane)",
+  capacity: "DE · NL · DK — not €/MWh strikes",
+  timeline: "Award & scheme timeline ≈2021–2026",
+  sources: "Primary sources"
+};
+if (!board.copy) fail("board.copy missing");
+for (const key of Object.keys(locked)) {
+  if (key === "headline" || key === "subhead") continue;
+  if (board.copy[key] !== locked[key]) fail("copy." + key + " is not the locked string");
+}
+
 const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
+if (!index.includes("<h1>" + locked.headline + "</h1>")) fail("hero headline is not the locked string");
+if (!index.includes("<p class=\"deck\">" + locked.subhead + "</p>")) fail("hero subhead is not the locked string");
 const required = [
   "base d’asta",
   "not an awarded Italian strike",
@@ -191,9 +210,8 @@ if (!index.includes('href="assets/styles.css"') || !index.includes('src="data/bo
 }
 if (index.includes('src="/') || index.includes('href="/')) fail("root-absolute asset path");
 
-const alertHits = index.match(/ALERT/g) || [];
-if (alertHits.length !== 2) fail("index should say ALERT none exactly twice, found " + alertHits.length);
-if (!index.includes(">ALERT none<") || !index.split("ALERT none").length) fail("ALERT phrasing");
+if ((index.match(/ALERT(?! none)/g) || []).length) fail("index uses ALERT outside “ALERT none”");
+if (!index.includes("Critic: ALERT none.")) fail("subhead critic line");
 
 const readme = fs.readFileSync(path.join(root, "README.md"), "utf8");
 if (!readme.includes("https://nza-93.github.io/offshore-wind-awards/")) fail("README missing Pages URL");

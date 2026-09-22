@@ -107,8 +107,7 @@
     if (card.showOn.indexOf(filter) === -1) return "";
     return (
       '<section class="panel panel-ceiling" id="italy-ceiling">' +
-      '<p class="kicker">' + esc(card.kicker) + "</p>" +
-      "<h3>" + esc(card.title) + "</h3>" +
+      "<h3>" + esc(board.copy.italy) + "</h3>" +
       '<p class="ceiling-figure"><span class="num">' + esc(card.figure) + '</span> <span class="ceiling-unit">' + esc(card.unit) + "</span></p>" +
       '<p class="ceiling-badge">' + esc(card.badge) + "</p>" +
       "<ul>" +
@@ -157,12 +156,12 @@
       : "";
     var aside = axis.aside ? '<p class="aside">' + esc(axis.aside) + "</p>" : "";
     var legend = axis.ceiling != null
-      ? '<p class="chart-legend"><span class="swatch tone-' + esc(axis.tone) + '"></span> Published clear <span class="swatch swatch-ceiling"></span> Italy ceiling, 185 €/MWh, not an award</p>'
+      ? '<p class="chart-legend"><span class="swatch tone-' + esc(axis.tone) + '"></span> Published clear <span class="swatch swatch-ceiling"></span> Dashed/hatched 185, ceiling only, never in the strike series</p>'
       : '<p class="chart-legend"><span class="swatch tone-' + esc(axis.tone) + '"></span> Published clear, original units. Axis starts at 0.</p>';
+    var kicker = axis.kicker ? '<p class="kicker">' + esc(axis.kicker) + "</p>" : "";
     return (
-      '<section class="panel">' +
-      '<p class="kicker">' + esc(axis.kicker) + "</p>" +
-      "<h3>" + esc(axis.title) + "</h3>" +
+      '<div class="chart-pane">' +
+      kicker +
       "<p class=\"caption\">" + esc(axis.caption) + "</p>" +
       note +
       legend +
@@ -172,15 +171,28 @@
       "</div>" +
       callout +
       aside +
-      "</section>"
+      "</div>"
     );
   }
 
   function renderCharts() {
-    return board.axes
-      .filter(axisVisible)
-      .map(renderAxis)
-      .join("");
+    var axes = board.axes.filter(axisVisible);
+    var html = "";
+    var i = 0;
+    while (i < axes.length) {
+      var group = axes[i].group;
+      var batch = [];
+      while (i < axes.length && axes[i].group === group) {
+        batch.push(axes[i]);
+        i++;
+      }
+      html +=
+        '<section class="panel">' +
+        "<h3>" + esc(board.copy[group]) + "</h3>" +
+        batch.map(renderAxis).join("") +
+        "</section>";
+    }
+    return html;
   }
 
   function renderBandE() {
@@ -188,8 +200,7 @@
     var rows = board.rows.filter(function (row) { return row.band === "E"; });
     return (
       '<section class="panel panel-e" id="band-e">' +
-      '<p class="kicker">Band E</p>' +
-      "<h3>Capacity, permit, and aid-free results</h3>" +
+      "<h3>" + esc(board.copy.capacity) + "</h3>" +
       "<p class=\"caption\">Context only. These are payments to the state, site fees, or rounds with no award. They are not €/MWh strikes and they are not on the charts above.</p>" +
       tableHtml(rows, "Band E metrics in their published units") +
       "</section>"
@@ -238,8 +249,7 @@
       .join("");
     return (
       '<section class="panel" id="timeline">' +
-      '<p class="kicker">2021–2026</p>' +
-      "<h3>Material awards and scheme events</h3>" +
+      "<h3>" + esc(board.copy.timeline) + "</h3>" +
       "<p class=\"caption\">The strip follows the briefing timeline. Prices here are the same published figures as the register.</p>" +
       '<ol class="years">' + columns + "</ol>" +
       "</section>"
@@ -316,8 +326,7 @@
       .join("");
     return (
       '<section class="panel" id="sources">' +
-      '<p class="kicker">Footnotes</p>' +
-      "<h3>Sources</h3>" +
+      "<h3>" + esc(board.copy.sources) + "</h3>" +
       "<p class=\"caption\">Numbering follows the research source list of " + esc(board.researchDate) + ". Prefer the official document where both a primary and a secondary link are given.</p>" +
       groups +
       "<h4>Also cited from the briefing or the scout tables</h4><ul class=\"src extra\">" + extra + "</ul>" +

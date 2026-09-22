@@ -9,10 +9,18 @@ window.BOARD = {
   pagesUrl: "https://nza-93.github.io/offshore-wind-awards/",
   repoUrl: "https://github.com/NZA-93/offshore-wind-awards",
 
+  copy: {
+    italy: "Italy FER 2 — ceiling only (not an award) — dashed/hatched 185, never in strike series",
+    fixed: "Fixed-bottom CfD clears (original units) — UK axis: £2012 real; no EU average",
+    floating: "Floating offshore — separate cohort",
+    poland: "Poland CfD — PLN band (own pane)",
+    capacity: "DE · NL · DK — not €/MWh strikes",
+    timeline: "Award & scheme timeline ≈2021–2026",
+    sources: "Primary sources"
+  },
+
   ceilingCard: {
     showOn: ["all", "C"],
-    kicker: "Band C · Italy scheme reference",
-    title: "FER 2 is a ceiling, not a clear",
     figure: "185",
     unit: "€/MWh",
     badge: "2024 base d’asta · Allegato 1 · not an award",
@@ -33,9 +41,9 @@ window.BOARD = {
   axes: [
     {
       id: "eur-fixed",
+      group: "fixed",
       showOn: ["all", "A", "C"],
-      kicker: "Band A",
-      title: "Fixed-bottom energy CfD in euro",
+      kicker: "Euro",
       caption: "Published fixed-bottom clears in euro, as awarded. The dashed mark is Italy’s 2024 base d’asta ceiling at 185 €/MWh. It is not an Italian award. Sterling, zloty, and floating clears are not on this chart. The scale runs from 0 to 200.",
       whenC: "These bars are French and Irish awards. Italy is only the dashed ceiling.",
       max: 200,
@@ -45,9 +53,9 @@ window.BOARD = {
     },
     {
       id: "gbp-fixed",
+      group: "fixed",
       showOn: ["all", "A"],
-      kicker: "Band A",
-      title: "Fixed-bottom energy CfD in real 2012 pounds",
+      kicker: "£2012 real",
       caption: "Official CfD convention: real 2012 £ per MWh. The Italian reference is a euro ceiling, so it is not drawn on this sterling axis. No euro rebase is shown.",
       max: 80,
       ticks: [0, 20, 40, 60, 80],
@@ -61,9 +69,9 @@ window.BOARD = {
     },
     {
       id: "eur-float",
+      group: "floating",
       showOn: ["all", "B"],
-      kicker: "Band B",
-      title: "Floating energy CfD in euro",
+      kicker: "Euro",
       caption: "Floating clears only. They sit above fixed-bottom prices with a technology reason. The dashed mark repeats the Italian ceiling at 185 €/MWh so the headroom is visible. That mark is not a floating award and not an Italian clear. Scale 0 to 200, same endpoints as the fixed-bottom euro chart.",
       max: 200,
       ticks: [0, 50, 100, 150, 185],
@@ -72,9 +80,9 @@ window.BOARD = {
     },
     {
       id: "gbp-float",
+      group: "floating",
       showOn: ["all", "B"],
-      kicker: "Band B",
-      title: "Floating energy CfD in real 2012 pounds",
+      kicker: "£2012 real",
       caption: "Separate from the fixed-bottom pound chart. AR4’s floating pot is 32 MW; AR6’s is 400 MW. No euro ceiling is drawn on a sterling axis.",
       max: 160,
       ticks: [0, 40, 80, 120, 160],
@@ -87,9 +95,9 @@ window.BOARD = {
     },
     {
       id: "pln",
+      group: "poland",
       showOn: ["all", "D"],
-      kicker: "Band D",
-      title: "Poland energy CfD in zloty",
+      kicker: "",
       caption: "Own band. Phase I is administrative; the 2025 auction is competitive. The Italian ceiling is in euro and is not drawn on a zloty axis. The scale runs from 0 to 600.",
       max: 600,
       ticks: [0, 200, 400, 600],

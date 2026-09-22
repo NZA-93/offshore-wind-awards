@@ -8,7 +8,9 @@ GitHub Pages serves this repository from the **main** branch, **root** folder (`
 
 ## What the board shows
 
-Italy has **no published E-1 (offshore) clearing** in 2021–2026. **€185/MWh is the FER 2 Allegato 1 base d’asta** — a reference ceiling, not an awarded strike. The critic sign on that gap is **WEAK** (opacity). **ALERT none.**
+**Italy has no published offshore award price yet — €185/MWh is a policy ceiling, not a strike.**
+
+Public CfD and auction results across EU peers (≈2021–2026), original units, split by scheme type. Critic: ALERT none. Italy E-1 opacity = WEAK, not inflated awards.
 
 | Band | What it is | Where it sits |
 | --- | --- | --- |
