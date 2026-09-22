@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Offshore wind public-award price board</title>
+  <meta name="description" content="Italy’s FER 2 offshore ceiling of 185 €/MWh is a base d’asta, not an awarded strike. EU peer clears stay in their own scheme bands and original units.">
+  <meta name="theme-color" content="#f3efe6">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,650&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap identity">
+      <span>NZA-93 / offshore-wind-awards</span>
+      <span>Research date 2026-09-21 · Europe/Berlin</span>
+    </div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+      <section class="hero" id="takeaway">
+        <p class="kicker">Public price board · Italy and EU peers · 2021–2026</p>
+        <h1>Italy has no published offshore strike to compare.</h1>
+        <p class="deck">The “inflated award” thesis is untestable. €185/MWh is the FER 2 Allegato 1 <em>base d’asta</em> — a reference ceiling, not an awarded Italian strike. Peer CfD rounds look competitive or cost-constrained. Critic sign on Italy: <strong>WEAK</strong> (opacity). <strong>ALERT none</strong>.</p>
+        <div class="facts">
+          <article>
+            <h2>Italian E-1 clear</h2>
+            <p class="fact">None published</p>
+            <p>No GSE graduatoria for offshore Procedure E-1 in 2021–2026.</p>
+          </article>
+          <article class="fact-ceiling">
+            <h2>FER 2 reference</h2>
+            <p class="fact">185 <span>€/MWh</span></p>
+            <p>2024 base d’asta, Allegato 1. Ceiling only. Not a strike.</p>
+            <p class="fact-links"><a href="https://www.mase.gov.it/portale/documents/d/guest/dm_19-06-2024_fer2-pdf">Decree</a><a href="https://www.gse.it/servizi-per-te/fonti-rinnovabili/fer2/graduatorie">Graduatorie</a></p>
+          </article>
+          <article>
+            <h2>Critic finding</h2>
+            <p class="fact">ALERT none</p>
+            <p>No row is an alert. WEAK marks a process note, a thin source, or a missing award.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="read" id="how-to-read" aria-labelledby="how-title">
+        <h2 id="how-title">How to read the bands</h2>
+        <p>Like with like. A sterling strike, a euro strike, a zloty strike, and a payment per megawatt are different objects. This board does not build one EU average.</p>
+        <ul class="band-key">
+          <li><span class="dot a" aria-hidden="true"></span><span><strong>A · Fixed-bottom energy CfD.</strong> UK AR4, AR5, and AR6; France AO4 and AO8; Ireland ORESS 1. UK figures stay in real 2012 pounds.</span></li>
+          <li><span class="dot b" aria-hidden="true"></span><span><strong>B · Floating energy CfD.</strong> France AO5 and AO6; UK AR6 floating (and the small AR4 floating pot). Not mixed into Band A.</span></li>
+          <li><span class="dot c" aria-hidden="true"></span><span><strong>C · Italy scheme reference.</strong> 185 €/MWh ceiling. Not an award, and not a bar on the charts.</span></li>
+          <li><span class="dot d" aria-hidden="true"></span><span><strong>D · Poland.</strong> Published in PLN. Any euro figure is labelled indicative and is not plotted.</span></li>
+          <li><span class="dot e" aria-hidden="true"></span><span><strong>E · Capacity, permit, or aid-free.</strong> Germany €/MW, Netherlands €/year, Denmark Thor. Context only — never on the €/MWh charts.</span></li>
+        </ul>
+      </section>
+
+      <div class="band-nav" role="tablist" aria-label="Scheme band">
+        <button type="button" role="tab" data-filter="all" aria-selected="true">All bands</button>
+        <button type="button" role="tab" data-filter="A">A · Fixed CfD</button>
+        <button type="button" role="tab" data-filter="B">B · Floating</button>
+        <button type="button" role="tab" data-filter="C">C · Italy ceiling</button>
+        <button type="button" role="tab" data-filter="D">D · Poland</button>
+        <button type="button" role="tab" data-filter="E">E · Not €/MWh</button>
+        <button type="button" role="tab" data-filter="N">Nulls and gaps</button>
+      </div>
+
+      <div id="app"></div>
+      <noscript>
+        <p>The charts and the register need JavaScript. The finding above does not: €185/MWh is the FER 2 base d’asta, a reference ceiling, not an awarded Italian strike. Italy has no published E-1 offshore clear in 2021–2026.</p>
+      </noscript>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><strong>Research date:</strong> 2026-09-21 (Europe/Berlin).</p>
+      <p><strong>Method:</strong> like-with-like by scheme type. Prices stay in the units in which they were published. UK CfD figures stay in real 2012 pounds. There is no single EU average €/MWh. Germany, the Netherlands, and Denmark use other metrics and are kept off the €/MWh charts.</p>
+      <p><strong>Disclaimer:</strong> 185 €/MWh is the FER 2 Allegato 1 base d’asta (reference ceiling), not an Italian strike and not an awarded price. Italy has no published E-1 offshore clearing in 2021–2026. Null and failed rounds are market discipline, not zeroes. Belgium and Spain are coverage gaps, not zeroes.</p>
+      <p>Public research board, not an official auction notice. <a href="https://github.com/NZA-93/offshore-wind-awards">Repository</a> · <a href="https://nza-93.github.io/offshore-wind-awards/">nza-93.github.io/offshore-wind-awards</a></p>
+    </div>
+  </footer>
+  <script src="data/board.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
