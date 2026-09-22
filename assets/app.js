@@ -5,6 +5,7 @@
   var mount = document.getElementById("app");
   var filter = "all";
   var FILTERS = ["all", "A", "B", "C", "D", "E", "N"];
+  var strip = document.getElementById("come-funziona");
 
   if (!board || !mount) {
     return;
@@ -24,8 +25,42 @@
     });
   });
 
+  if (strip) {
+    var langParam = new URLSearchParams(window.location.search).get("lang");
+    setStripLang(langParam === "en" ? "en" : "it");
+    strip.querySelectorAll("[data-lang-btn]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        setStripLang(button.getAttribute("data-lang-btn"));
+      });
+    });
+  }
+
   syncTabs();
   render();
+
+  function setStripLang(lang) {
+    if (!strip) return;
+    strip.setAttribute("data-lang", lang);
+    strip.querySelectorAll("[data-lang-btn]").forEach(function (button) {
+      var on = button.getAttribute("data-lang-btn") === lang;
+      button.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    strip.querySelectorAll("[data-lang-panel]").forEach(function (panel) {
+      var on = panel.getAttribute("data-lang-panel") === lang;
+      if (on) {
+        panel.removeAttribute("hidden");
+      } else {
+        panel.setAttribute("hidden", "");
+      }
+    });
+    var url = new URL(window.location.href);
+    if (lang === "it") {
+      url.searchParams.delete("lang");
+    } else {
+      url.searchParams.set("lang", "en");
+    }
+    window.history.replaceState(null, "", url);
+  }
 
   function syncTabs() {
     document.querySelectorAll("[data-filter]").forEach(function (button) {

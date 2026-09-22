@@ -19,6 +19,13 @@ window.BOARD = {
     sources: "Primary sources"
   },
 
+  comeFunziona: {
+    itTitle: "Come funziona (asta → bolletta)",
+    enTitle: "How it works (award → bill)",
+    itBody: "L’asta fissa un prezzo-obiettivo per MWh. L’impianto vende sul mercato. Se il mercato è più basso, un fondo pubblico integra; se è più alto, il produttore restituisce (strip). In bolletta arriva solo il saldo netto (in Italia: oneri / ASOS; in UK: Supplier Obligation) — non “185 € a kWh”. I 185 €/MWh FER 2 offshore sono ancora solo base d’asta / tetto, non un premio assegnato (nessuna graduatoria E-1 pubblicata).",
+    enBody: "The auction sets a target £/€ per MWh. The plant still sells on the wholesale market. Market low → public top-up; market high → plant pays back (strip). Bills see only the net levy (IT ASOS / UK Supplier Obligation) — not “€185 per kWh.” Italy’s €185/MWh offshore figure remains FER 2’s base d’asta / ceiling only — no published E-1 award yet."
+  },
+
   ceilingCard: {
     showOn: ["all", "C"],
     figure: "185",

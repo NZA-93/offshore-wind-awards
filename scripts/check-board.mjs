@@ -213,6 +213,37 @@ if (index.includes('src="/') || index.includes('href="/')) fail("root-absolute a
 if ((index.match(/ALERT(?! none)/g) || []).length) fail("index uses ALERT outside “ALERT none”");
 if (!index.includes("Critic: ALERT none.")) fail("subhead critic line");
 
+const come = board.comeFunziona;
+if (!come) fail("comeFunziona missing");
+const comeLocked = {
+  itTitle: "Come funziona (asta → bolletta)",
+  enTitle: "How it works (award → bill)",
+  itBody: "L’asta fissa un prezzo-obiettivo per MWh. L’impianto vende sul mercato. Se il mercato è più basso, un fondo pubblico integra; se è più alto, il produttore restituisce (strip). In bolletta arriva solo il saldo netto (in Italia: oneri / ASOS; in UK: Supplier Obligation) — non “185 € a kWh”. I 185 €/MWh FER 2 offshore sono ancora solo base d’asta / tetto, non un premio assegnato (nessuna graduatoria E-1 pubblicata).",
+  enBody: "The auction sets a target £/€ per MWh. The plant still sells on the wholesale market. Market low → public top-up; market high → plant pays back (strip). Bills see only the net levy (IT ASOS / UK Supplier Obligation) — not “€185 per kWh.” Italy’s €185/MWh offshore figure remains FER 2’s base d’asta / ceiling only — no published E-1 award yet."
+};
+for (const key of Object.keys(comeLocked)) {
+  if (come[key] !== comeLocked[key]) fail("comeFunziona." + key + " mismatch");
+}
+if (!index.includes("id=\"come-funziona\"")) fail("Come funziona strip missing");
+if (!index.includes("<h2 id=\"come-funziona-title\">" + comeLocked.itTitle + "</h2>")) fail("IT Come funziona title");
+if (!index.includes("<h2>" + comeLocked.enTitle + "</h2>")) fail("EN Come funziona title");
+function stripHtml(html) {
+  return html.replace(/<[^>]+>/g, "");
+}
+const itP = index.match(/data-lang-panel="it"[\s\S]*?<p>([\s\S]*?)<\/p>/);
+const enP = index.match(/data-lang-panel="en"[\s\S]*?<p>([\s\S]*?)<\/p>/);
+if (!itP || stripHtml(itP[1]) !== comeLocked.itBody) fail("IT Come funziona body does not match SIGNED copy");
+if (!enP || stripHtml(enP[1]) !== comeLocked.enBody) fail("EN Come funziona body does not match SIGNED copy");
+if (!index.includes("Auction target") || !index.includes("Market sale") || !index.includes("Top-up / strip") || !index.includes("Net levy (ASOS IT / Supplier Obligation UK)")) {
+  fail("EN spine steps missing");
+}
+if (!index.includes("Prezzo-obiettivo") || !index.includes("Vendita sul mercato") || !index.includes("Integrazione / strip") || !index.includes("Saldo netto (ASOS)")) {
+  fail("IT spine steps missing");
+}
+if (/premio assegnato/.test(index) === false) fail("IT ceiling honesty line missing");
+if (!index.includes("base d’asta / ceiling") || !index.includes("base d’asta / tetto")) fail("ceiling wording missing from strip");
+if (/scam|cartel/i.test(index.match(/id=\"come-funziona\"[\s\S]*?id=\"how-to-read\"/)?.[0] || "")) fail("strip has banned language");
+
 const readme = fs.readFileSync(path.join(root, "README.md"), "utf8");
 if (!readme.includes("https://nza-93.github.io/offshore-wind-awards/")) fail("README missing Pages URL");
 if (!readme.includes("data/board.js")) fail("README missing update path");

@@ -12,6 +12,8 @@ GitHub Pages serves this repository from the **main** branch, **root** folder (`
 
 Public CfD and auction results across EU peers (≈2021–2026), original units, split by scheme type. Critic: ALERT none. Italy E-1 opacity = WEAK, not inflated awards.
 
+A short **Come funziona / How it works** strip sits under the hero (IT primary, EN toggle). It walks auction target → market sale → top-up / strip → net levy (ASOS IT / Supplier Obligation UK), and states that €185/MWh remains FER 2 base d’asta / ceiling only.
+
 | Band | What it is | Where it sits |
 | --- | --- | --- |
 | A | Fixed-bottom energy CfD (UK AR4/AR5/AR6, France AO4/AO8, Ireland ORESS 1) | Own charts. UK in real 2012 £. Euro peers on a separate euro chart. |
